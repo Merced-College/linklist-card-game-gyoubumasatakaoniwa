@@ -1,91 +1,53 @@
+//Henry Lam
+//11/27/24
+//CPSC-39-12111
+
 //package cardGame;
 
-public class Card {
+/**
+ * Represents a single playing card.
+ * Each card has a suit, rank, value, and an associated image file name.
+ * Comments added for each end brace for clarity.
+ */
 
-    // Instance variables
-    private String cardSuit;
-    private String cardName;
-    private int cardValue;
-    private String cardPic;
+public class Card { // Start of Card class.
 
-    // Default constructor
-    public Card() {
-        cardName = "King";
-        cardValue = 10; // Corrected this from a string to an int
-    }
+    private String suit;   // The suit of the card (e.g., "heart").
+    private String rank;   // The rank of the card (e.g., "ace").
+    private int value;     // The value of the card (e.g., 11 for an ace).
+    private String image;  // The file name of the card's image.
 
-    // Non-default constructor
-    public Card(String name, int value) {
-        cardName = name;
-        cardValue = value;
-    }
+    // Constructor to initialize a card.
+    public Card(String suit, String rank, int value, String image) { // Start of constructor.
+        this.suit = suit;
+        this.rank = rank;
+        this.value = value;
+        this.image = image;
+    } // End of constructor.
 
-    // Constructor with all attributes
-    public Card(String suit, String name, int value, String pic) {
-        cardSuit = suit;
-        cardName = name;
-        cardValue = value;
-        cardPic = pic;
-    }
+    // Getter for the suit of the card.
+    public String getSuit() { // Start of getSuit method.
+        return suit;
+    } // End of getSuit method.
 
-    // Getter methods
-    public String getCardName() {
-        return cardName;
-    }
+    // Getter for the rank of the card.
+    public String getRank() { // Start of getRank method.
+        return rank;
+    } // End of getRank method.
 
-    public int getCardValue() {
-        return cardValue;
-    }
+    // Getter for the value of the card.
+    public int getValue() { // Start of getValue method.
+        return value;
+    } // End of getValue method.
 
-    public String getCardSuit() {
-        return cardSuit;
-    }
+    // Getter for the image file name of the card.
+    public String getImage() { // Start of getImage method.
+        return image;
+    } // End of getImage method.
 
-    public String getCardPic() {
-        return cardPic;
-    }
-
-    // Setter methods
-    public void setCardName(String newCardName) {
-        cardName = newCardName;
-    }
-
-    public void setCardValue(int newCardValue) {
-        cardValue = newCardValue;
-    }
-
-    public void setCardSuit(String newCardSuit) {
-        cardSuit = newCardSuit;
-    }
-
-    public void setCardPic(String newCardPic) {
-        cardPic = newCardPic;
-    }
-
-    // Method to get combined card values
-    public String getCardValues() {
-        return cardName + " " + cardValue;
-    }
-
-    // Equals method to compare two cards
+    // Provides a string representation of the card.
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true; // Same object reference
-        }
-        if (obj == null || getClass() != obj.getClass()) {
-            return false; // Null or different class
-        }
-        Card otherCard = (Card) obj;
-        return cardValue == otherCard.cardValue && 
-               cardName.equals(otherCard.cardName) && 
-               cardSuit.equals(otherCard.cardSuit) && 
-               cardPic.equals(otherCard.cardPic);
-    }
-
-    // toString method for printing the card
-    @Override
-    public String toString() {
-        return cardName + " of " + cardSuit + " (Value: " + cardValue + ", Picture: " + cardPic + ")";
-    }
-}
+    public String toString() { // Start of toString method.
+        return rank + " of " + suit + " (value: " + value + ")";
+    } // End of toString method.
+} // End of Card class.
