@@ -1,111 +1,43 @@
+//Henry Lam
+//11/28/24
+//CPSC-39-12111
 
-public class LinkList
-{
-	private Link first;            // ref to first link on list
+/**
+ * A simple linked list implementation for storing cards.
+ * Comments added for each end brace for clarity.
+ */
 
-	//-------------------------------------------------------------
-	public LinkList()              // constructor
-	{
-		first = null;               // no links on list yet
-	}
-	//-------------------------------------------------------------
-	public void insertFirst(Card card)
-	{                           // make new link
-		Link newLink = new Link(card);
-		newLink.next = first;       // it points to old first link
-		first = newLink;            // now first points to this
-	}
-	public void add(Card card)
-	{                           // make new link
-		Link newLink = new Link(card);
-		newLink.next = first;       // it points to old first link
-		first = newLink;            // now first points to this
-	}
-	//-------------------------------------------------------------
-	public Link find(Card cardToFind)      // find link with given key
-	{                           // (assumes non-empty list)
-		Link current = first;              // start at 'first'
-		while(!current.equals(cardToFind))        // while no match,
-		{
-			if(current.next == null)        // if end of list,
-				return null;                 // didn't find it
-			else                            // not end of list,
-				current = current.next;      // go to next link
-		}
-		return current;                    // found it
-	}
-	//-------------------------------------------------------------
-	public Link delete(Card cardToFind)    // delete link with given key
-	{                           // (assumes non-empty list)
-		Link current = first;              // search for link
-		Link previous = first;
-		while(!current.equals(cardToFind))
-		{
-			if(!current.equals(cardToFind))
-				return null;                 // didn't find it
-			else
-			{
-				previous = current;          // go to next link
-				current = current.next;
-			}
-		}                               // found it
-		if(current.equals(cardToFind))               // if first link,
-			first = first.next;             //    change first
-		else                               // otherwise,
-			previous.next = current.next;   //    bypass it
-		return current;
-	}
-	//-------------------------------------------------------------
-	public void displayList()      // display the list
-	{
-		System.out.print("List (first-->last): ");
-		Link current = first;       // start at beginning of list
-		while(current != null)      // until end of list,
-		{
-			current.displayLink();   // print data
-			current = current.next;  // move to next link
-		}
-		System.out.println("");
-	}
-	//-------------------------------------------------------------
+public class LinkedList { // Start of LinkedList class.
 
-	//-------------------------------------------------------------
-	public Card getFirst()    // delete link with given key
-	{                           // (assumes non-empty list)
-		Link current = first;              // search for link
-		first = first.next;             //    change first
-		return current.cardLink;
-	}
+    Link head; // Head of the linked list.
 
-}  // end class LinkList
-////////////////////////////////////////////////////////////////
-/*class LinkedLists
-{
-	public static void main(String[] args)
-	{
-		LinkList theList = new LinkList();  // make list
+    // Adds a new card to the end of the list.
+    public void add(Card card) { // Start of add method.
+        Link newLink = new Link(card);
 
-		theList.insertFirst(new Card("heart", "ace", 11,"ah.gif"));      // insert 4 items
-		theList.insertFirst(new Card("Spade", "ace", 11,"as.gif"));
-		//theList.insertFirst(66, 6.99);
-		//theList.insertFirst(88, 8.99);
+        if (head == null) { // Start of if (list is empty).
+            head = newLink; // Set new link as the head.
+        } else { // Start of else (list is not empty).
+            Link current = head;
 
-		theList.displayList();              // display list
+            while (current.getNext() != null) { // Start of while loop (traverse to end of list).
+                current = current.getNext();
+            } // End of while loop (traverse to end of list).
 
-		Link f = theList.find(new Card("heart", "ace", 11,"ah.gif"));          // find item
-		if( f != null)
-			System.out.println("Found link with key " + f.cardLink);
-		else
-			System.out.println("Can't find link");
+            current.setNext(newLink); // Append new link at the end.
+        } // End of else.
+    } // End of add method.
 
-		Link d = theList.delete(new Card("heart", "ace", 11,"ah.gif"));        // delete item
-		if( d != null )
-			System.out.println("Deleted link with key " + d.cardLink);
-		else
-			System.out.println("Can't delete link");
+    @Override
+    public String toString() { // Start of toString method.
+        StringBuilder sb = new StringBuilder();
+        Link current = head;
 
-		theList.displayList();              // display list
-	}  // end main()
-}  // end class LinkList2App
-////////////////////////////////////////////////////////////////
-/// */
+        while (current != null) { // Start of while loop (traverse the list).
+            sb.append(current).append(" ");
+            current = current.getNext();
+        } // End of while loop (traverse the list).
+
+        return sb.toString().trim();
+    } // End of toString method.
+} // End of LinkedList class.
